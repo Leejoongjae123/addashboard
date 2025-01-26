@@ -8,10 +8,10 @@ import { Button } from "@heroui/react";
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
   return (
-    <form className="flex-1 flex flex-col min-w-64">
+    <form className="flex flex-col w-full h-[calc(100vh-4rem)] justify-center items-center">
       <h1 className="text-4xl font-bold text-center">로그인</h1>
 
-      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
+      <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8 w-1/2">
         <Label htmlFor="email">이메일</Label>
         <Input name="email" placeholder="이메일을 입력해주세요" required />
         <div className="flex justify-between items-center">

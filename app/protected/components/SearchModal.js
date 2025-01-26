@@ -17,12 +17,56 @@ import {
   TableCell,
   RadioGroup,
   Radio,
-  Input
+  Input,
+  Link
 } from "@heroui/react";
+
 import { Pagination } from "@heroui/react";
 import { FaSearch } from "react-icons/fa";
+import {createClient} from "@/utils/supabase/client"
+import {useEffect,useState} from "react"
+import { debounce } from 'lodash';
+import useGlobalSearch from "@/store/useGlobalSearch";
+
 
 export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
+  const supabase = createClient()
+  const [companyList, setCompanyList] = useState([])
+  const { searchKeyword, setSearchKeyword } = useGlobalSearch();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalItems, setTotalItems] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+  const itemsPerPage = 5;
+
+  const handleSearch = async (page = 1) => {
+    let query = supabase
+      .from("inputs")
+      .select("*", { count: "exact" })
+      .range((page - 1) * itemsPerPage, page * itemsPerPage - 1)
+      .order('title', { ascending: true });
+
+    if (searchTerm) {
+      query = query.ilike('title', `%${searchTerm}%`);
+    }
+
+    const { data, error, count } = await query;
+
+    if (error) {
+      console.error(error);
+    } else {
+      setCompanyList(data);
+      setTotalItems(count);
+    }
+  };
+
+  useEffect(() => {
+    handleSearch(currentPage);
+  }, [currentPage,searchTerm]);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   const [selectedColor, setSelectedColor] = React.useState("default");
   const colors = [
     "default",
@@ -33,6 +77,31 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
     "danger",
   ];
 
+  const handleSelectionChange = (selectedKeys) => {
+    console.log('selectedKeys', selectedKeys)
+    if (selectedKeys.size > 0) {
+      const selectedCompany = companyList.find(company => company.title === Array.from(selectedKeys)[0]);
+      console.log('selectedCompany', selectedCompany)
+      if (selectedCompany) {
+        setSearchKeyword(selectedCompany.title); // 선택된 회사명으로 검색어 설정
+        console.log('searchKeyword', searchKeyword)
+      }
+      setSelectedColor("success"); // 초록색으로 설정
+    } else {
+      setSelectedColor("default"); // 기본 색상으로 설정
+    }
+  };
+  
+  const debouncedSearch = debounce((value) => {
+    setSearchTerm(value);
+  }, 500);
+
+  const handleSearchChange = (e) => {
+    debouncedSearch(e.target.value);
+  };
+
+  console.log('searchKeyword', searchKeyword)
+
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
@@ -41,47 +110,40 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
             <ModalHeader className="flex flex-col gap-1">업체 찾기</ModalHeader>
             <ModalBody>
               <div className="flex flex-col gap-3">
-                <Input startContent={<FaSearch />} placeholder="검색어를 입력하세요" />
+                <Input startContent={<FaSearch />} placeholder="검색어를 입력하세요" onChange={handleSearchChange} />
                 <Table
                   aria-label="Example static collection table"
                   color={selectedColor}
-                  defaultSelectedKeys={["2"]}
+                  defaultSelectedKeys={[""]}
                   selectionMode="single"
                   shadow='none'
+                  onSelectionChange={handleSelectionChange}
                 >
                   <TableHeader>
-                    <TableColumn>NAME</TableColumn>
-                    <TableColumn>ROLE</TableColumn>
-                    <TableColumn>STATUS</TableColumn>
+                    <TableColumn className="text-center">회사명</TableColumn>
+                    <TableColumn className="text-center">생성일자</TableColumn>
+                    <TableColumn className="text-center">URL</TableColumn>
                   </TableHeader>
-                  
+
                   <TableBody>
-                    <TableRow key="1">
-                      <TableCell>Tony Reichert</TableCell>
-                      <TableCell>CEO</TableCell>
-                      <TableCell>Active</TableCell>
-                    </TableRow>
-                    <TableRow key="2">
-                      <TableCell>Zoey Lang</TableCell>
-                      <TableCell>Technical Lead</TableCell>
-                      <TableCell>Paused</TableCell>
-                    </TableRow>
-                    <TableRow key="3">
-                      <TableCell>Jane Fisher</TableCell>
-                      <TableCell>Senior Developer</TableCell>
-                      <TableCell>Active</TableCell>
-                    </TableRow>
-                    <TableRow key="4">
-                      <TableCell>William Howard</TableCell>
-                      <TableCell>Community Manager</TableCell>
-                      <TableCell>Vacation</TableCell>
-                    </TableRow>
+                    {companyList.map((company) => (
+                      <TableRow key={company.title}>
+                        <TableCell className="text-center">{company.title}</TableCell>
+                        <TableCell className="text-center">{formatTimestampToDate(company.created_at)}</TableCell>
+                        <TableCell className="text-center"><Link href={company.itemUrl} target="_blank">링크</Link></TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
-                
               </div>
               <div className="flex justify-center">
-                <Pagination isCompact showControls initialPage={1} total={10} />
+                <Pagination
+                  isCompact
+                  showControls
+                  initialPage={1}
+                  total={Math.ceil(totalItems / itemsPerPage)}
+                  onChange={handlePageChange}
+                />
               </div>
             </ModalBody>
             <ModalFooter>
@@ -94,4 +156,17 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
       </ModalContent>
     </Modal>
   );
+}
+
+function formatTimestampToDate(timestamp) {
+  // Date 객체를 생성합니다.
+  const date = new Date(timestamp);
+  
+  // 년, 월, 일을 추출합니다.
+  const year = date.getUTCFullYear();
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  
+  // "년-월-일" 형식으로 반환합니다.
+  return `${year}-${month}-${day}`;
 }

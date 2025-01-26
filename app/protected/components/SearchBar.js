@@ -12,13 +12,14 @@ import {
   Link
 } from "@heroui/react";
 import SearchModal from "./SearchModal";
-
+import useGlobalSearch from "@/store/useGlobalSearch";
 export default function SearchBar() {
   const [searchValue, setSearchValue] = useState("");
   const [isFilterDropdownVisible, setIsFilterDropdownVisible] = useState(false);
   const [isCategoryDropdownVisible, setIsCategoryDropdownVisible] =
     useState(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { searchKeyword, setSearchKeyword } = useGlobalSearch();
 
   const toggleFilterDropdown = () => {
     setIsFilterDropdownVisible(!isFilterDropdownVisible);
@@ -35,6 +36,8 @@ export default function SearchBar() {
           업체 찾기
         </Button>
         <Input
+          value={searchKeyword}
+          onChange={(e) => setSearchKeyword(e.target.value)}
           startContent={<FaSearch />}
           placeholder="업체명을 입력해주세요"
           className="w-full"

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import SearchBar from "./components/SearchBar";
 import { Card, CardHeader, CardBody, Image } from "@heroui/react";
 import { Pagination } from "@heroui/react";
-import { items } from "./components/items";
+import CardSections from "./components/CardSections";
 export default async function ProtectedPage() {
   const supabase = await createClient();
 
@@ -46,26 +46,8 @@ export default async function ProtectedPage() {
       </div>
       <div className="w-[80vw] md:w-[60vw] h-full flex flex-col justify-center items-center mx-auto gap-y-6 my-6">
         <SearchBar />
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
-          {items.map((item) => (
-            <Card className="py-4">
-              <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                <p className="text-tiny uppercase font-bold">Daily Mix</p>
-                <small className="text-default-500">12 Tracks</small>
-                <h4 className="font-bold text-large">Frontend Radio</h4>
-              </CardHeader>
-              <CardBody className="overflow-visible py-2">
-                <Image
-                  alt="Card background"
-                  className="object-cover rounded-xl"
-                  src="https://heroui.com/images/hero-card-complete.jpeg"
-                  width={270}
-                />
-              </CardBody>
-            </Card>
-          ))}
-        </div>
-        <Pagination isCompact showControls initialPage={1} total={10} />
+        <CardSections/>
+        
       </div>
     </>
   );
