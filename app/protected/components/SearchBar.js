@@ -44,7 +44,7 @@ export default function SearchBar() {
         ></Input>
       </div>
 
-      <div className="flex gap-2 w-full justify-center items-center overflow-x-auto scrollbar-hide whitespace-nowrap">
+      <div className="flex gap-2 w-full justify-center items-center flex-wrap">
         
         <Tooltip content="A 하는 사이트 입니다.">
           <Link href="https://www.naver.com" target="_blank">
