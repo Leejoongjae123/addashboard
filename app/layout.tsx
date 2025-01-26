@@ -41,10 +41,10 @@ export default function RootLayout({
           <HeroUIProvider>
             <main className="w-full h-full flex flex-col items-center justify-center">
               <div className="flex w-full flex-col items-center">
-                <nav className="w-full flex justify-center h-16 border-b-2 border-gray-300 shadow-md">
+                <nav className="w-full flex justify-center h-16 shadow-lg fixed top-0 left-0 right-0 z-50 bg-white">
                   <div className="md:w-[70vw] w-[95vw] flex justify-between items-center p-3 px-5 text-sm">
                     <div className="flex gap-5 items-center font-semibold text-3xl">
-                      대시보드
+                      광고현황
                     </div>
                     {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
                   </div>
