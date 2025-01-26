@@ -54,6 +54,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
                     <TableColumn>ROLE</TableColumn>
                     <TableColumn>STATUS</TableColumn>
                   </TableHeader>
+                  
                   <TableBody>
                     <TableRow key="1">
                       <TableCell>Tony Reichert</TableCell>
