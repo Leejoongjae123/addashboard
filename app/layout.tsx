@@ -49,7 +49,7 @@ export default function RootLayout({
                     {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
                   </div>
                 </nav>
-                <div className="w-[95vw] md:w-[60vw] h-full flex flex-col items-center justify-center">
+                <div className="w-[95vw] md:w-[60vw] h-full flex flex-col items-center justify-center mt-16">
                   {children}
                 </div>
               </div>

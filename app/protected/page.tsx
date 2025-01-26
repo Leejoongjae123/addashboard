@@ -47,7 +47,6 @@ export default async function ProtectedPage() {
       <div className="w-[80vw] md:w-[60vw] h-full flex flex-col justify-center items-center mx-auto gap-y-6 my-6">
         <SearchBar />
         <CardSections/>
-        
       </div>
     </>
   );
