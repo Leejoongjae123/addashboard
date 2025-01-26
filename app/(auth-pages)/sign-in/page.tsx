@@ -4,38 +4,28 @@ import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-
+import { Button } from "@heroui/react";
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
   return (
     <form className="flex-1 flex flex-col min-w-64">
-      <h1 className="text-2xl font-medium">Sign in</h1>
-      <p className="text-sm text-foreground">
-        Don't have an account?{" "}
-        <Link className="text-foreground font-medium underline" href="/sign-up">
-          Sign up
-        </Link>
-      </p>
+      <h1 className="text-4xl font-bold text-center">로그인</h1>
+
       <div className="flex flex-col gap-2 [&>input]:mb-3 mt-8">
-        <Label htmlFor="email">Email</Label>
-        <Input name="email" placeholder="you@example.com" required />
+        <Label htmlFor="email">이메일</Label>
+        <Input name="email" placeholder="이메일을 입력해주세요" required />
         <div className="flex justify-between items-center">
-          <Label htmlFor="password">Password</Label>
-          <Link
-            className="text-xs text-foreground underline"
-            href="/forgot-password"
-          >
-            Forgot Password?
-          </Link>
+          <Label htmlFor="password">비밀번호</Label>
+          
         </div>
         <Input
           type="password"
           name="password"
-          placeholder="Your password"
+          placeholder="비밀번호를 입력해주세요"
           required
         />
-        <SubmitButton pendingText="Signing In..." formAction={signInAction}>
-          Sign in
+        <SubmitButton pendingText="로그인 중..." formAction={signInAction}>
+          로그인
         </SubmitButton>
         <FormMessage message={searchParams} />
       </div>

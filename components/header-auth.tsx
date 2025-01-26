@@ -2,7 +2,7 @@ import { signOutAction } from "@/app/actions";
 import { hasEnvVars } from "@/utils/supabase/check-env-vars";
 import Link from "next/link";
 import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+import { Button } from "@heroui/react";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function AuthButton() {
@@ -26,18 +26,18 @@ export default async function AuthButton() {
           </div>
           <div className="flex gap-2">
             <Button
-              asChild
+              
               size="sm"
-              variant={"outline"}
+              
               disabled
               className="opacity-75 cursor-none pointer-events-none"
             >
               <Link href="/sign-in">Sign in</Link>
             </Button>
             <Button
-              asChild
+              
               size="sm"
-              variant={"default"}
+              
               disabled
               className="opacity-75 cursor-none pointer-events-none"
             >
@@ -50,21 +50,19 @@ export default async function AuthButton() {
   }
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email}!
+      <span className="text-medium font-bold hidden md:block">Hey, {user.email}!</span>
       <form action={signOutAction}>
-        <Button type="submit" variant={"outline"}>
+        <Button type="submit" color="primary">
           Sign out
         </Button>
       </form>
     </div>
   ) : (
     <div className="flex gap-2">
-      <Button asChild size="sm" variant={"outline"}>
+      <Button size="sm" >
         <Link href="/sign-in">Sign in</Link>
       </Button>
-      <Button asChild size="sm" variant={"default"}>
-        <Link href="/sign-up">Sign up</Link>
-      </Button>
+
     </div>
   );
 }

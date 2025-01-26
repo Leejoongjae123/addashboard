@@ -2,7 +2,10 @@ import FetchDataSteps from "@/components/tutorial/fetch-data-steps";
 import { createClient } from "@/utils/supabase/server";
 import { InfoIcon } from "lucide-react";
 import { redirect } from "next/navigation";
-
+import SearchBar from "./components/SearchBar";
+import { Card, CardHeader, CardBody, Image } from "@heroui/react";
+import { Pagination } from "@heroui/react";
+import { items } from "./components/items";
 export default async function ProtectedPage() {
   const supabase = await createClient();
 
@@ -15,24 +18,55 @@ export default async function ProtectedPage() {
   }
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-12">
-      <div className="w-full">
-        <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">
-          <InfoIcon size="16" strokeWidth={2} />
-          This is a protected page that you can only see as an authenticated
-          user
+    <>
+      <div className="grid w-full grid-cols-12 my-12 md:gap-x-12 gap-y-6">
+        <div className="col-span-12 md:col-span-6 flex flex-col justify-center items-center gap-y-2 md:gap-y-12 ">
+          <div className="flex flex-col justify-center items-center gap-y-4">
+            <h1 className="w-full text-4xl font-bold text-center">
+              광고 현황 대시보드
+            </h1>
+          </div>
+
+          <div className="flex flex-col justify-center items-center">
+            <p className="w-full font-light text-gray-500   dark:text-gray-400 text-center">
+              효율적인 광고 캠페인을 위한 모든 정보를 한 곳에서 확인하세요.
+            </p>
+            <p className="w-full font-light text-gray-500  dark:text-gray-400 text-center">
+              지금 바로 맞춤형 전략을 시작해 보세요!
+            </p>
+          </div>
+        </div>
+        <div className="col-span-12 md:col-span-6 w-full h-auto flex flex-col justify-center items-center">
+          <Image
+            src="/images/advertisement.jpg"
+            alt="mockup"
+            className="w-4/5 h-auto object-cover rounded-3xl mx-auto "
+          />
         </div>
       </div>
-      <div className="flex flex-col gap-2 items-start">
-        <h2 className="font-bold text-2xl mb-4">Your user details</h2>
-        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
-          {JSON.stringify(user, null, 2)}
-        </pre>
+      <div className="w-[80vw] md:w-[60vw] h-full flex flex-col justify-center items-center mx-auto gap-y-6 my-6">
+        <SearchBar />
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
+          {items.map((item) => (
+            <Card className="py-4">
+              <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                <p className="text-tiny uppercase font-bold">Daily Mix</p>
+                <small className="text-default-500">12 Tracks</small>
+                <h4 className="font-bold text-large">Frontend Radio</h4>
+              </CardHeader>
+              <CardBody className="overflow-visible py-2">
+                <Image
+                  alt="Card background"
+                  className="object-cover rounded-xl"
+                  src="https://heroui.com/images/hero-card-complete.jpeg"
+                  width={270}
+                />
+              </CardBody>
+            </Card>
+          ))}
+        </div>
+        <Pagination isCompact showControls initialPage={1} total={10} />
       </div>
-      <div>
-        <h2 className="font-bold text-2xl mb-4">Next steps</h2>
-        <FetchDataSteps />
-      </div>
-    </div>
+    </>
   );
 }
