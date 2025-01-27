@@ -85,7 +85,7 @@ export default function CardSections() {
         ) : (
           companyList.map((item, index) => (
             <Link href={`${item.url}`} target="_blank" key={index}>
-              <Card className="py-4 transform transition-transform duration-300 hover:scale-110">
+              <Card className="py-4 transform transition-transform duration-300 hover:scale-110 rounded-none">
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                   <h1 className="text-lg font-bold">ID:{item.adId}</h1>
                   <p className="text-medium text-gray-500">확인일시: {formatTimestampToDate(item.created_at)}</p>
@@ -100,7 +100,7 @@ export default function CardSections() {
                   <div className="relative w-full h-36">
                     <Image
                       alt="Card background"
-                      className="object-cover rounded-xl"
+                      className="object-cover"
                       src={item.thumbnail}
                       fill
                     />
