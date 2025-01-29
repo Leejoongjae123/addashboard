@@ -119,6 +119,9 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
                   selectionMode="single"
                   shadow='none'
                   onSelectionChange={handleSelectionChange}
+                  classNames={{
+                    base: "",
+                  }}
                 >
                   <TableHeader>
                     <TableColumn className="text-center">회사명</TableColumn>
@@ -128,10 +131,10 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
 
                   <TableBody>
                     {companyList.map((company) => (
-                      <TableRow key={company.title}>
-                        <TableCell className="text-center">{company.title}</TableCell>
-                        <TableCell className="text-center">{formatTimestampToDate(company.created_at)}</TableCell>
-                        <TableCell className="text-center"><Link href={company.itemUrl} target="_blank">링크</Link></TableCell>
+                      <TableRow key={company.title} >
+                        <TableCell className="text-center whitespace-nowrap">{company.title}</TableCell>
+                        <TableCell className="text-center whitespace-nowrap">{formatTimestampToDate(company.created_at)}</TableCell>
+                        <TableCell className="text-center whitespace-nowrap"><Link href={company.itemUrl} target="_blank">링크</Link></TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
