@@ -21,7 +21,7 @@ export default async function ProtectedPage() {
     <>
       <div className="flex flex-col w-full mt-24 mb-12 gap-y-6 justify-center items-center">
         <div className="text-5xl font-extrabold text-black col-span-12">
-          AdTracker <span className="text-5xl font-bold bg-gradient-to-r from-[#0dccff] to-[#4760ff] bg-clip-text text-transparent">1.0</span>
+          애드트레커 <span className="text-5xl font-bold bg-gradient-to-r from-[#0dccff] to-[#4760ff] bg-clip-text text-transparent">1.0</span>
         </div>
         <div className="text-2xl font-bold text-[#757575] col-span-12">효율적인 광고 맞춤형 전략 솔루션</div>
         {/* <div className="col-span-12 md:col-span-6 flex flex-col justify-center items-center gap-y-2 md:gap-y-12 ">
