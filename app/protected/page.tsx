@@ -19,8 +19,12 @@ export default async function ProtectedPage() {
 
   return (
     <>
-      <div className="grid w-full grid-cols-12 my-12 md:gap-x-12 gap-y-6">
-        <div className="col-span-12 md:col-span-6 flex flex-col justify-center items-center gap-y-2 md:gap-y-12 ">
+      <div className="flex flex-col w-full mt-24 mb-12 gap-y-6 justify-center items-center">
+        <div className="text-5xl font-extrabold text-black col-span-12">
+          AdTracker <span className="text-5xl font-bold bg-gradient-to-r from-[#0dccff] to-[#4760ff] bg-clip-text text-transparent">1.0</span>
+        </div>
+        <div className="text-2xl font-bold text-[#757575] col-span-12">효율적인 광고 맞춤형 전략 솔루션</div>
+        {/* <div className="col-span-12 md:col-span-6 flex flex-col justify-center items-center gap-y-2 md:gap-y-12 ">
           <div className="flex flex-col justify-center items-center gap-y-4">
             <h1 className="w-full text-4xl font-bold text-center">
               광고 현황 대시보드
@@ -42,9 +46,9 @@ export default async function ProtectedPage() {
             alt="mockup"
             className="w-4/5 h-auto object-cover rounded-3xl mx-auto "
           />
-        </div>
+        </div> */}
       </div>
-      <div className="w-[80vw] md:w-[60vw] h-full flex flex-col justify-center items-center mx-auto gap-y-6 my-6">
+      <div className="w-[80vw] md:w-[70vw] h-full flex flex-col justify-center items-center mx-auto my-6">
         <SearchBar />
         <CardSections/>
       </div>

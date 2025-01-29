@@ -46,41 +46,41 @@ export default function SearchBar() {
 
       <div className="flex gap-2 w-full justify-center items-center flex-wrap">
         
-        <Tooltip content="A 하는 사이트 입니다.">
-          <Link href="https://www.naver.com" target="_blank">
+        {/* <Tooltip content=""> */}
+          <Link href="/" target="_blank">
             <Chip color="default" size="lg">
-              업체링크A
+              준비 중
             </Chip>
           </Link>
-        </Tooltip>
-        <Tooltip content="B 하는 사이트 입니다.">
-          <Link href="https://www.naver.com" target="_blank">
+        {/* </Tooltip> */}
+        {/* <Tooltip content=""> */}
+          <Link href="/" target="_blank">
             <Chip color="primary" size="lg">
-              업체링크B
+              준비 중
             </Chip>
           </Link>
-        </Tooltip>
-        <Tooltip content="C 하는 사이트 입니다.">
-          <Link href="https://www.naver.com" target="_blank">
+        {/* </Tooltip> */}
+        {/* <Tooltip content=""> */}
+          <Link href="https://blog.naver.com/PostList.naver?blogId=rebootdesign&from=postList&categoryNo=8" target="_blank">
             <Chip color="secondary" size="lg">
-              업체링크C
+              정보 블로그
             </Chip>
           </Link>
-        </Tooltip>
-        <Tooltip content="D 하는 사이트 입니다.">
-          <Link href="https://www.naver.com" target="_blank">
+        {/* </Tooltip> */}
+        {/* <Tooltip content=""> */}
+            <Link href="/" target="_blank">
             <Chip color="success" size="lg">
-              업체링크D
+              준비 중
             </Chip>
           </Link>
-        </Tooltip>
-        <Tooltip content="E 하는 사이트 입니다.">
-          <Link href="https://www.naver.com" target="_blank">
+        {/* </Tooltip> */}
+        {/* <Tooltip content=""> */}
+          <Link href="/" target="_blank">
             <Chip color="warning" size="lg">
-              업체링크E
+              준비 중
             </Chip>
           </Link>
-        </Tooltip>
+        {/* </Tooltip> */}
       </div>
       <SearchModal
         isOpen={isOpen}

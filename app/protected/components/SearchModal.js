@@ -36,7 +36,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   const handleSearch = async (page = 1) => {
     let query = supabase
@@ -97,7 +97,8 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
   }, 500);
 
   const handleSearchChange = (e) => {
-    debouncedSearch(e.target.value);
+    // debouncedSearch(e.target.value);
+    setSearchTerm(e.target.value);
   };
 
   console.log('searchKeyword', searchKeyword)
@@ -110,7 +111,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
             <ModalHeader className="flex flex-col gap-1">업체 찾기</ModalHeader>
             <ModalBody>
               <div className="flex flex-col gap-3">
-                <Input startContent={<FaSearch />} placeholder="검색어를 입력하세요" onChange={handleSearchChange} />
+                <Input startContent={<FaSearch />} placeholder="검색어를 입력하세요" value={searchTerm} onChange={handleSearchChange} />
                 <Table
                   aria-label="Example static collection table"
                   color={selectedColor}
