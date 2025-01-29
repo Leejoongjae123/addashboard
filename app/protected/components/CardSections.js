@@ -123,6 +123,7 @@ export default function CardSections() {
                           alt="thumbnail"
                           className="rounded-full"
                           fill
+                          unoptimized
                         ></Image>
                       </div>
                       <p className="font-bold text-xl">{item.name}</p>
@@ -153,6 +154,7 @@ export default function CardSections() {
                         className="object-contain"
                         src={item.thumbnail}
                         fill
+                        unoptimized
                       />
                     </div>
                   </div>
