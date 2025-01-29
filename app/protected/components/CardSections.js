@@ -74,7 +74,7 @@ export default function CardSections() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <div className="w-full flex justify-end">
-        <div className="w-[30%] md:w-[10%] mb-4">
+        <div className="w-[50%] md:w-[10%] mb-4">
         <Select 
           selectedKeys={searchFilter} 
           onSelectionChange={handleFilterChange}
