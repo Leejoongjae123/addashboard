@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
         hostname: 'myadimage.s3.ap-northeast-2.amazonaws.com',
       },
     ],
+    domains: ['myadimage.s3.ap-northeast-2.amazonaws.com'],
   },
   /* config options here */
 };
