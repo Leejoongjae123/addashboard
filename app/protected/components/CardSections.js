@@ -164,7 +164,7 @@ export default function CardSections() {
           ))
         )}
       </div>
-      <div className="w-full flex justify-center mb-20">
+      <div className="w-full flex justify-center mb-20 mt-10">
         <Pagination
           isCompact
           showControls
