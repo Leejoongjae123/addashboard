@@ -58,6 +58,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
       setTotalItems(count);
     }
   };
+  
 
   useEffect(() => {
     handleSearch(currentPage);
@@ -103,6 +104,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
 
 
   console.log('searchKeyword', searchKeyword)
+  console.log('currentPage', currentPage)
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>

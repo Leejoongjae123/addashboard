@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { items } from "./items";
 import { Card, CardHeader, CardBody, Skeleton,Chip,Select,SelectItem } from "@heroui/react";
 import { Pagination } from "@heroui/react";
@@ -18,6 +18,10 @@ export default function CardSections() {
   const itemsPerPage = 16;
   const [loading, setLoading] = useState(true);
   const [searchFilter, setSearchFilter] = useState(new Set(['전체']));
+
+  // 이전 검색어와 필터를 추적하기 위한 ref 생성
+  const prevSearchKeywordRef = useRef();
+  const prevSearchFilterRef = useRef();
 
   const handleGetData = async (page, searchKeyword) => {
     let query = supabase
@@ -50,11 +54,26 @@ export default function CardSections() {
   };
 
   useEffect(() => {
-    // 데이터 로드 시 로딩 상태 업데이트
     const fetchData = async () => {
       setLoading(true);
-      await handleGetData(currentPage, searchKeyword);
+
+      // 이전 값과 현재 값을 비교하여 변경 여부 확인
+      const isSearchKeywordChanged = prevSearchKeywordRef.current !== searchKeyword;
+      const isSearchFilterChanged = prevSearchFilterRef.current !== searchFilter;
+
+      // searchKeyword나 searchFilter가 변경되면 currentPage를 1로 강제 설정
+      if (isSearchKeywordChanged || isSearchFilterChanged) {
+        setCurrentPage(1);
+        await handleGetData(1, searchKeyword);
+      } else {
+        await handleGetData(currentPage, searchKeyword);
+      }
+
       setLoading(false);
+
+      // 현재 값을 ref에 저장하여 다음 렌더링 시 이전 값으로 사용
+      prevSearchKeywordRef.current = searchKeyword;
+      prevSearchFilterRef.current = searchFilter;
     };
 
     fetchData();
@@ -69,8 +88,6 @@ export default function CardSections() {
     // 필요한 경우, 선택된 필터에 따라 데이터를 다시 로드하거나 다른 작업을 수행할 수 있습니다.
   };
 
-  console.log("data", companyList);
-  console.log("searchFilter", searchFilter);
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <div className="w-full flex justify-end">
