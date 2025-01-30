@@ -33,7 +33,7 @@ export default function CardSections() {
     }
     // searchKeyword가 있을 경우 쿼리에 추가
     if (searchKeyword) {
-      query = query.ilike("name", `%${searchKeyword}%`); // 'column_name'을 검색할 컬럼명으로 변경하세요.
+      query = query.ilike("searchFilter", `%${searchKeyword}%`); // 'column_name'을 검색할 컬럼명으로 변경하세요.
     }
 
     const { data, error, count } = await query;
