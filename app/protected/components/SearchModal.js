@@ -89,7 +89,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
       setSelectedColor("success"); // 초록색으로 설정
     } else {
       setSelectedColor("default"); // 기본 색상으로 설정
-    }
+    } 
   };
   
   const debouncedSearch = debounce((value) => {
@@ -100,6 +100,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
     // debouncedSearch(e.target.value);
     setSearchTerm(e.target.value);
   };
+
 
   console.log('searchKeyword', searchKeyword)
 
@@ -151,7 +152,11 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
               </div>
             </ModalBody>
             <ModalFooter>
-              <Button color="primary" onPress={onClose}>
+              <Button color="primary" onPress={
+                ()=>{
+                  onClose()
+                  setCurrentPage(1)
+                }}>
                 확인
               </Button>
             </ModalFooter>
