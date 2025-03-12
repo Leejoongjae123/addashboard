@@ -12,7 +12,7 @@ export default function NavbarItem() {
       <Link href='/protected/introduction'>
         <div className={`${pathname === '/protected/introduction' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px]`}>브랜드 소개</div>
       </Link>
-      <Link href='/protected/brand'>
+      <Link href='/protected/design'>
         <div className={`${pathname === '/protected/brand' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px]`}>리부트 디자인</div>
       </Link>
       <Link href='/protected/tools'>
