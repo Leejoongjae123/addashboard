@@ -4,6 +4,14 @@ import Link from "next/link";
 import { Badge } from "./ui/badge";
 import { Button } from "@heroui/react";
 import { createClient } from "@/utils/supabase/server";
+import { Menu } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import MobileNavMenu from "./mobile-nav-menu";
 
 export default async function AuthButton() {
   const supabase = await createClient();
@@ -30,9 +38,9 @@ export default async function AuthButton() {
               size="sm"
               
               disabled
-              className="opacity-75 cursor-none pointer-events-none"
+              className="opacity-75 cursor-none pointer-events-none text-[17px]"
             >
-              <Link href="/sign-in">Sign in</Link>
+              <Link href="/sign-in">로그인</Link>
             </Button>
             <Button
               
@@ -49,20 +57,27 @@ export default async function AuthButton() {
     );
   }
   return user ? (
-    <div className="flex items-center gap-4">
-      <span className="text-medium font-bold hidden md:block">사용자</span>
-      <form action={signOutAction}>
-        <Button type="submit" color="primary">
-          Sign out
-        </Button>
-      </form>
-    </div>
+    <>
+      {/* 데스크탑 뷰 (md 이상) */}
+      <div className="hidden md:flex items-center gap-4">
+        <span className="text-medium font-bold text-white">사용자</span>
+        <form action={signOutAction}>
+          <Button type="submit" color="primary">
+            로그아웃
+          </Button>
+        </form>
+      </div>
+      
+      {/* 모바일 뷰 (md 미만) - 햄버거 메뉴 */}
+      <div className="flex md:hidden">
+        <MobileNavMenu user={user} />
+      </div>
+    </>
   ) : (
     <div className="flex gap-2">
-      <Button size="sm" >
-        <Link href="/sign-in">Sign in</Link>
+      <Button size="sm" color="primary" className="text-[17px]">
+        <Link href="/sign-in">로그인</Link>
       </Button>
-
     </div>
   );
 }

@@ -19,7 +19,8 @@ export default async function ProtectedPage() {
 
   return (
     <>
-      <div className="flex flex-col w-full mt-24 mb-12 gap-y-6 justify-center items-center">
+      <div className="flex flex-col w-full mt-24 mb-12 gap-y-6 justify-center items-center relative">
+
         <div className="text-5xl font-extrabold text-black col-span-12">
           애드트레커 <span className="text-5xl font-bold bg-gradient-to-r from-[#0dccff] to-[#4760ff] bg-clip-text text-transparent">1.0</span>
         </div>
