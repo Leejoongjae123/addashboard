@@ -1,4 +1,5 @@
 @import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 
 @tailwind base;
@@ -9,4 +10,17 @@
 /* Update html font-family */
 body {
   font-family: 'NanumBarunGothic', inter, system-ui, sans-serif;
+}
+
+:root {
+  --font-pretendard: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+html, 
+body {
+  font-family: var(--font-pretendard);
+}
+
+* {
+  font-family: inherit;
 }
