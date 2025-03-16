@@ -42,7 +42,7 @@ export default function RootLayout({
           <HeroUIProvider>
             <main className="w-full h-full flex flex-col items-center justify-center">
               <div className="flex w-full flex-col items-center bg-gradient-to-b from-[#415F8B] to-[#1B1B1B]">
-                <nav className="w-full flex justify-center h-16 shadow-lg fixed top-0 left-0 right-0 z-50 bg-black">
+                <nav className="w-full flex justify-center h-16  fixed top-0 left-0 right-0 z-50 bg-black">
                   <div className="md:w-[70vw] w-[95vw] flex justify-between items-center p-3 px-5 text-sm">
                     <div className="text-[20px] flex items-center text-3xl gap-x-2 font-bold">
                       <span className="text-white">애드트래커</span> <span className="bg-gradient-to-r from-[#00C5FF] to-[#0176FF] text-transparent bg-clip-text ">1.0</span>

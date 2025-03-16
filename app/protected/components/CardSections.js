@@ -149,7 +149,7 @@ export default function CardSections() {
                       <div className="flex gap-2 items-center">
                         <div className="relative w-12 h-12 ">
                           <Image
-                            src={item.profile || null}
+                            src={item.profile || "/images/noimage.jpg"}
                             alt="thumbnail"
                             className="rounded-full"
                             fill
@@ -182,7 +182,7 @@ export default function CardSections() {
                         <Image
                           alt="Card background"
                           className="object-contain"
-                          src={item.thumbnail || null}
+                          src={item.thumbnail || "/images/noimage.jpg"}
                           fill
                           unoptimized
                         />
