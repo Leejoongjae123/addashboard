@@ -8,7 +8,7 @@ import useGlobalSearch from "@/store/useGlobalSearch";
 import Image from "next/image";
 // import { Link } from "lucide-react";
 import Link from "next/link";
-
+import useSearchFilter from "@/store/useSearchFilter";
 export default function CardSections() {
   const supabase = createClient();
   const [companyList, setCompanyList] = useState([]);
@@ -17,11 +17,13 @@ export default function CardSections() {
   const [totalItems, setTotalItems] = useState(0);
   const itemsPerPage = 16;
   const [loading, setLoading] = useState(true);
+  const { selectedFilter, setSelectedFilter } = useSearchFilter();
   const [searchFilter, setSearchFilter] = useState(new Set(['전체']));
-
   // 이전 검색어와 필터를 추적하기 위한 ref 생성
   const prevSearchKeywordRef = useRef();
   const prevSearchFilterRef = useRef();
+
+  console.log('selectedFilter:',selectedFilter)
 
   const handleGetData = async (page, searchKeyword) => {
     let query = supabase
@@ -35,6 +37,16 @@ export default function CardSections() {
     } else if (searchFilter.has('동영상')) {
       query = query.eq('isVideo', true);
     }
+    console.log('12312312')
+    
+    // selectedFilter에 title 값이 있는 경우 필터링 추가
+    if (selectedFilter) {
+      // title 필드가 selectedFilter.title 배열의 어느 하나와 일치하는지 확인
+      // .in() 메서드를 사용하여 배열 내의 값 중 하나와 일치하는지 확인
+      query = query.in('searchFilter', selectedFilter.titles);
+      console.log("있다!")
+    }
+    
     // searchKeyword가 있을 경우 쿼리에 추가
     if (searchKeyword) {
       query = query.ilike("searchFilter", `%${searchKeyword}%`); // 'column_name'을 검색할 컬럼명으로 변경하세요.
@@ -77,7 +89,7 @@ export default function CardSections() {
     };
 
     fetchData();
-  }, [currentPage, searchKeyword, searchFilter]);
+  }, [currentPage, searchKeyword, searchFilter,selectedFilter]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -106,7 +118,7 @@ export default function CardSections() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
         {loading ? (
           Array.from({ length: 16 }).map((_, index) => (
-            <Card className="col-span-1 space-y-5 p-4" radius="lg" key={index}>
+            <Card className="col-span-1 space-y-5 p-4" radius="lg" key={index} shadow="none">
               <Skeleton className="rounded-lg">
                 <div className="h-40 rounded-lg bg-default-300" />
               </Skeleton>
@@ -130,52 +142,54 @@ export default function CardSections() {
         ) : (
           companyList.map((item, index) => (
             <Link href={`${item.url}`} target="_blank" key={index}>
-              <Card className="transform transition-transform duration-300 hover:scale-105 rounded-none h-96">
-                <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                  <div className="flex gap-2 justify-between items-center w-full">
-                    <div className="flex gap-2 items-center">
-                      <div className="relative w-12 h-12 ">
+              <Card className="border-1 border-[#E5E5E5] transform transition-transform duration-300 hover:scale-105 rounded-none w-full h-full" shadow="none">
+                <div className="flex flex-col w-full h-[400px]">
+                  <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                    <div className="flex gap-2 justify-between items-center w-full">
+                      <div className="flex gap-2 items-center">
+                        <div className="relative w-12 h-12 ">
+                          <Image
+                            src={item.profile || null}
+                            alt="thumbnail"
+                            className="rounded-full"
+                            fill
+                            unoptimized
+                          ></Image>
+                        </div>
+                        <p className="font-bold text-xl">{item.name}</p>
+                      </div>
+                      <div>
+                        <Chip
+                          variant="solid"
+                          className={
+                            item.isVideo
+                              ? "bg-[#fef0e5] text-[#e77c29]" // 동영상일 경우
+                              : "bg-[#e5f6fe] text-[#477ec0]" // 이미지일 경우
+                          }
+                        >
+                          {item.isVideo ? "동영상" : "이미지"}
+                        </Chip>
+                      </div>
+                    </div>
+                    <p className="text-[18px] text-gray-500 ">
+                      확인일시: {formatTimestampToDate(item.created_at)}
+                    </p>
+                    <h1 className="text-[15px] font-bold">ID:{item.adId}</h1>
+                  </CardHeader>
+                  <CardBody className="overflow-visible flex-1 flex justify-center items-center p-4">
+                    <div className="w-full h-full bg-[#e4e4e4] flex justify-center items-center px-6">
+                      <div className="relative w-full max-w-[288px] aspect-[288/264]">
                         <Image
-                          src={item.profile}
-                          alt="thumbnail"
-                          className="rounded-full"
+                          alt="Card background"
+                          className="object-contain"
+                          src={item.thumbnail || null}
                           fill
                           unoptimized
-                        ></Image>
+                        />
                       </div>
-                      <p className="font-bold text-xl">{item.name}</p>
                     </div>
-                    <div>
-                      <Chip
-                        variant="solid"
-                        className={
-                          item.isVideo
-                            ? "bg-[#fef0e5] text-[#e77c29]" // 동영상일 경우
-                            : "bg-[#e5f6fe] text-[#477ec0]" // 이미지일 경우
-                        }
-                      >
-                        {item.isVideo ? "동영상" : "이미지"}
-                      </Chip>
-                    </div>
-                  </div>
-                  <p className="text-medium text-gray-500 ">
-                    확인일시: {formatTimestampToDate(item.created_at)}
-                  </p>
-                  <h1 className="text-sm font-bold">ID:{item.adId}</h1>
-                </CardHeader>
-                <CardBody className="overflow-visible flex justify-center items-center ">
-                  <div className="w-full h-full bg-[#e4e4e4] flex justify-center items-center">
-                    <div className="relative w-full h-full bg-[#e4e4e4] aspect-w-16 aspect-h-9">
-                      <Image
-                        alt="Card background"
-                        className="object-contain"
-                        src={item.thumbnail}
-                        fill
-                        unoptimized
-                      />
-                    </div>
-                  </div>
-                </CardBody>
+                  </CardBody>
+                </div>
               </Card>
             </Link>
           ))

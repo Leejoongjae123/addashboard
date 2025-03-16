@@ -11,8 +11,9 @@ function SectionHeader() {
         <h1 className="text-[27px] md:text-[55px] font-bold text-white">
           <div>
             소재 제작의{" "}
-            <span className="bg-gradient-to-r from-[#016BFF] to-[#01C2FF] text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-[#016BFF] to-[#01C2FF] text-transparent bg-clip-text relative group">
               가장 큰 문제점
+              <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#016BFF] to-[#01C2FF] group-hover:w-full transition-all duration-300"></span>
             </span>
           </div>
           <div className="text-[27px] md:text-[55px] font-bold text-white">

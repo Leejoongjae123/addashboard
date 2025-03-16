@@ -24,8 +24,8 @@ function FeatureSection() {
   return (
     <section className="text-center">
       <div className="flex flex-col items-center justify-center my-12 md:my-24">
-        <div className="text-[35px] md:text-[70px] font-bold">애드트래커라면</div>
-        <div className="text-[35px] md:text-[70px] font-bold bg-gradient-to-r from-[#01D0FF] to-[#0167FF] text-transparent bg-clip-text">
+        <div className="text-[30px] md:text-[60px] font-bold">애드트래커라면</div>
+        <div className="text-[30px] md:text-[60px] font-bold bg-gradient-to-r from-[#01D0FF] to-[#0167FF] text-transparent bg-clip-text">
           레퍼런스 걱정 끝!
         </div>
       </div>
@@ -41,7 +41,7 @@ function FeatureSection() {
         ))}
       </div>
 
-      <button className="bg-[#006FEE] w-[90%] max-w-[368px]  rounded-full text-[20px] md:text-[40px] font-bold text-white mb-24 mt-12 md:mt-40 p-4">
+      <button className="bg-[#006FEE] w-[90%] max-w-[368px]  rounded-full text-[20px] md:text-[23px] font-bold text-white mb-24 mt-12 md:mt-40 p-3">
         애드트래커 문의 ▶
       </button>
     </section>

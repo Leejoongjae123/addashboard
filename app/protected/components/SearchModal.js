@@ -108,14 +108,15 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent>
+      <ModalContent className="h-[70vh] max-h-[70vh]">
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1">업체 찾기</ModalHeader>
-            <ModalBody>
+            <ModalBody className="overflow-y-auto scrollbar-hide">
               <div className="flex flex-col gap-3">
                 <Input startContent={<FaSearch />} placeholder="검색어를 입력하세요" value={searchTerm} onChange={handleSearchChange} />
                 <Table
+
                   aria-label="Example static collection table"
                   color={selectedColor}
                   defaultSelectedKeys={[""]}
@@ -124,6 +125,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
                   onSelectionChange={handleSelectionChange}
                   classNames={{
                     base: "",
+                    wrapper:"m-0 p-0"
                   }}
                 >
                   <TableHeader>
