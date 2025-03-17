@@ -27,8 +27,8 @@ export default function NavbarItem() {
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected/tools' ? 'hidden' : ''}`}></span>
         </div>
       </Link>
-      <Link href='/protected'>
-        <div className={`${pathname === '/protected' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
+      <Link href='/protected/archive'>
+        <div className={`${pathname === '/protected/archive' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
           아카이빙 자료
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected' ? 'hidden' : ''}`}></span>
         </div>
