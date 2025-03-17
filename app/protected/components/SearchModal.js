@@ -108,7 +108,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent className="h-[70vh] max-h-[70vh] w-[90vw] md:max-w-[781px] p-8">
+      <ModalContent className="h-[90vh] max-h-[842px] w-[90vw] md:max-w-[781px] p-8">
         {(onClose) => (
           <>
             <ModalHeader className="flex flex-col gap-1 text-[25px] font-bold">업체 찾기</ModalHeader>
