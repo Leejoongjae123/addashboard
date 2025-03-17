@@ -108,13 +108,22 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent className="h-[70vh] max-h-[70vh]">
+      <ModalContent className="h-[70vh] max-h-[70vh] w-[90vw] md:max-w-[781px] p-8">
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1">업체 찾기</ModalHeader>
+            <ModalHeader className="flex flex-col gap-1 text-[25px] font-bold">업체 찾기</ModalHeader>
             <ModalBody className="overflow-y-auto scrollbar-hide">
               <div className="flex flex-col gap-3">
-                <Input startContent={<FaSearch />} placeholder="검색어를 입력하세요" value={searchTerm} onChange={handleSearchChange} />
+                <Input 
+                  classNames={{
+                    input: "text-[20px] font-bold",
+                    inputWrapper: "text-[20px] font-bold"
+                  }} 
+                  startContent={<FaSearch />} 
+                  placeholder="검색어를 입력하세요" 
+                  value={searchTerm} 
+                  onChange={handleSearchChange} 
+                />
                 <Table
 
                   aria-label="Example static collection table"
@@ -129,17 +138,17 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
                   }}
                 >
                   <TableHeader>
-                    <TableColumn className="text-center">회사명</TableColumn>
-                    <TableColumn className="text-center">생성일자</TableColumn>
-                    <TableColumn className="text-center">URL</TableColumn>
+                    <TableColumn className="text-center text-[20px] font-bold">회사명</TableColumn>
+                    <TableColumn className="text-center text-[20px] font-bold">생성일자</TableColumn>
+                    <TableColumn className="text-center text-[20px] font-bold">분류</TableColumn>
                   </TableHeader>
 
                   <TableBody>
                     {companyList.map((company) => (
                       <TableRow key={company.title} >
-                        <TableCell className="text-center whitespace-nowrap">{company.title}</TableCell>
-                        <TableCell className="text-center whitespace-nowrap">{formatTimestampToDate(company.created_at)}</TableCell>
-                        <TableCell className="text-center whitespace-nowrap"><Link href={company.itemUrl} target="_blank">링크</Link></TableCell>
+                        <TableCell className="text-center whitespace-nowrap text-[22px] font-bold">{company.title}</TableCell>
+                        <TableCell className="text-center whitespace-nowrap text-[22px] font-bold text-[#9D9D9D]">{formatTimestampToDate(company.created_at)}</TableCell>
+                        <TableCell className="text-center whitespace-nowrap text-[22px] font-bold">{company.category}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

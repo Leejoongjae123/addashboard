@@ -79,10 +79,14 @@ export default function SearchBar() {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center mx-auto rounded-lg py-6 px-0 md:px-12 gap-y-8">
       <div className="flex gap-2 w-full justify-between gap-x-4">
-        <Button onClick={onOpen} color="primary" size="md" className="w-12">
+        <Button onClick={onOpen} color="primary" size="md" className="w-[90px] text-[17px] text-white">
           업체 찾기
         </Button>
         <Input
+          classNames={{
+            input: "text-[17px] text-white",
+            inputWrapper: "text-[17px] text-black"
+          }}
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}
           startContent={<FaSearch />}
