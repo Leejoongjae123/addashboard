@@ -30,7 +30,7 @@ function FeatureSection() {
         </div>
       </div>
 
-      <div className="flex gap-8 justify-center items-center flex-col md:flex-row">
+      <div className="flex gap-[28px] justify-center items-center flex-col md:flex-row">
         {features.map((feature, index) => (
           <FeatureCard
             key={index}
@@ -41,7 +41,7 @@ function FeatureSection() {
         ))}
       </div>
 
-      <button className="bg-[#006FEE] w-[90%] max-w-[368px]  rounded-full text-[20px] md:text-[23px] font-bold text-white mb-24 mt-12 md:mt-40 p-3">
+      <button className="bg-[#006FEE] w-[90%] max-w-[368px]  rounded-full text-[20px] md:text-[23px] font-bold text-white mb-24 mt-12 md:mt-[125px] p-3">
         애드트래커 문의 ▶
       </button>
     </section>
