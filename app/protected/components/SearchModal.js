@@ -125,7 +125,7 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
                   value={searchTerm}
                   onChange={handleSearchChange}
                 />
-                <div className="overflow-auto flex-grow scrollbar-hide">
+                <div className="overflow-auto flex-grow ">
                   <Table
                     aria-label="Example static collection table"
                     color={selectedColor}
