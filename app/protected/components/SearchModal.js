@@ -108,12 +108,12 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent className="h-[90vh] max-h-[842px] w-[90vw] md:max-w-[781px] p-8">
+      <ModalContent className="h-[90vh] max-h-[842px] w-[90vw] md:max-w-[781px]">
         {(onClose) => (
           <>
-            <ModalHeader className="flex flex-col gap-1 text-[25px] font-bold">업체 찾기</ModalHeader>
-            <ModalBody className="overflow-y-auto scrollbar-hide">
-              <div className="flex flex-col gap-3">
+            <ModalHeader className="flex flex-col gap-1 text-[25px] font-bold px-8 pt-8">업체 찾기</ModalHeader>
+            <ModalBody className="flex flex-col justify-between px-8 overflow-hidden">
+              <div className="flex flex-col gap-3 overflow-hidden">
                 <Input 
                   classNames={{
                     input: "text-[20px] font-bold",
@@ -124,37 +124,38 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
                   value={searchTerm} 
                   onChange={handleSearchChange} 
                 />
-                <Table
+                <div className="overflow-auto flex-grow">
+                  <Table
+                    aria-label="Example static collection table"
+                    color={selectedColor}
+                    defaultSelectedKeys={[""]}
+                    selectionMode="single"
+                    shadow='none'
+                    onSelectionChange={handleSelectionChange}
+                    classNames={{
+                      base: "min-h-[400px]",
+                      wrapper: "m-0 p-0"
+                    }}
+                  >
+                    <TableHeader>
+                      <TableColumn className="text-center text-[20px] font-bold">회사명</TableColumn>
+                      <TableColumn className="text-center text-[20px] font-bold">생성일자</TableColumn>
+                      <TableColumn className="text-center text-[20px] font-bold">분류</TableColumn>
+                    </TableHeader>
 
-                  aria-label="Example static collection table"
-                  color={selectedColor}
-                  defaultSelectedKeys={[""]}
-                  selectionMode="single"
-                  shadow='none'
-                  onSelectionChange={handleSelectionChange}
-                  classNames={{
-                    base: "",
-                    wrapper:"m-0 p-0"
-                  }}
-                >
-                  <TableHeader>
-                    <TableColumn className="text-center text-[20px] font-bold">회사명</TableColumn>
-                    <TableColumn className="text-center text-[20px] font-bold">생성일자</TableColumn>
-                    <TableColumn className="text-center text-[20px] font-bold">분류</TableColumn>
-                  </TableHeader>
-
-                  <TableBody>
-                    {companyList.map((company) => (
-                      <TableRow key={company.title} >
-                        <TableCell className="text-center whitespace-nowrap text-[22px] font-bold">{company.title}</TableCell>
-                        <TableCell className="text-center whitespace-nowrap text-[22px] font-bold text-[#9D9D9D]">{formatTimestampToDate(company.created_at)}</TableCell>
-                        <TableCell className="text-center whitespace-nowrap text-[22px] font-bold">{company.category}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    <TableBody>
+                      {companyList.map((company) => (
+                        <TableRow key={company.title} >
+                          <TableCell className="text-center whitespace-nowrap text-[22px] font-bold">{company.title}</TableCell>
+                          <TableCell className="text-center whitespace-nowrap text-[22px] font-bold text-[#9D9D9D]">{formatTimestampToDate(company.created_at)}</TableCell>
+                          <TableCell className="text-center whitespace-nowrap text-[22px] font-bold">{company.category}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-4">
                 <Pagination
                   isCompact
                   showControls
@@ -164,8 +165,8 @@ export default function SearchModal({ isOpen, onOpen, onOpenChange }) {
                 />
               </div>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onPress={
+            <ModalFooter className="px-8 pb-8">
+              <Button className="text-[16px] " color="primary" onPress={
                 ()=>{
                   onClose()
                   setCurrentPage(1)
