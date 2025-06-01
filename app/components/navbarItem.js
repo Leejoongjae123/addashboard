@@ -21,13 +21,19 @@ export default function NavbarItem() {
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected/design' ? 'hidden' : ''}`}></span>
         </div>
       </Link>
-      <Link href='/protected/tools'>
-        <div className={`${pathname === '/protected/tools' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
-          자주 사용하는 도구
+      <Link href='/protected/google'>
+        <div className={`${pathname === '/protected/google' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
+          구글 광고 트래커
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected/tools' ? 'hidden' : ''}`}></span>
         </div>
       </Link>
-      <Link href='/protected/archive'>
+      <Link href='/protected/meta'>
+        <div className={`${pathname === '/protected/meta' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
+          메타 광고 트래커
+          <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected/tools' ? 'hidden' : ''}`}></span>
+        </div>
+      </Link>
+      <Link href='https://motiol-studio.notion.site/COMING-TO-YOU-LIVE-1e1a0a8f361380669287d3c524d7d933?pvs=4' target="_blank">
         <div className={`${pathname === '/protected/archive' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
           아카이빙 자료
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected' ? 'hidden' : ''}`}></span>

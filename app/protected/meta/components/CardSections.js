@@ -27,18 +27,16 @@ export default function CardSections() {
 
   const handleGetData = async (page, searchKeyword) => {
     let query = supabase
-      .from("google_datas")
+      .from("datas")
       .select("*", { count: "exact" })
       .range((page - 1) * itemsPerPage, page * itemsPerPage - 1)
       .order("created_at", { ascending: false });
 
-    if (searchFilter.has('텍스트')) {
-      query = query.eq('isText', true);
-    } else if (searchFilter.has('이미지')) {
-      query = query.eq('isImage', true);
+    if (searchFilter.has('이미지')) {
+      query = query.eq('isVideo', false);
     } else if (searchFilter.has('동영상')) {
       query = query.eq('isVideo', true);
-    }
+    } 
     console.log('12312312')
     
     // selectedFilter에 title 값이 있는 경우 필터링 추가
@@ -111,7 +109,6 @@ export default function CardSections() {
           onSelectionChange={handleFilterChange}
         >
           <SelectItem key="전체" value="전체">전체</SelectItem>
-          <SelectItem key="텍스트" value="텍스트">텍스트</SelectItem>
           <SelectItem key="이미지" value="이미지">이미지</SelectItem>
           <SelectItem key="동영상" value="동영상">동영상</SelectItem>
         </Select>
@@ -167,12 +164,11 @@ export default function CardSections() {
                           className={
                             item.isVideo
                               ? "bg-[#fef0e5] text-[#e77c29]" // 동영상일 경우
-                              : item.isImage
-                                ? "bg-[#e5f6fe] text-[#477ec0]" // 이미지일 경우
-                                : "bg-[#fef0e5] text-[#e77c29]" // 텍스트일 경우
+                              : "bg-[#e5f6fe] text-[#477ec0]" // 이미지일 경우
+                                
                           }
                         >
-                          {item.isVideo ? "동영상" : item.isImage ? "이미지" : "텍스트"}
+                          {item.isVideo ? "동영상" : "이미지"}
                         </Chip>
                       </div>
                     </div>

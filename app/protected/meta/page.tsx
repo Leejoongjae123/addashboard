@@ -6,6 +6,8 @@ import SearchBar from "./components/SearchBar";
 import { Card, CardHeader, CardBody, Image } from "@heroui/react";
 import { Pagination } from "@heroui/react";
 import CardSections from "./components/CardSections";
+import { FaMeta } from "react-icons/fa6";
+
 export default async function ProtectedPage() {
   const supabase = await createClient();
 
@@ -20,11 +22,16 @@ export default async function ProtectedPage() {
   return (
     <>
       <div className="flex flex-col w-full mt-24 mb-12 gap-y-6 justify-center items-center relative">
-
-        <div className="text-5xl font-extrabold text-black col-span-12">
-          애드트레커 <span className="text-5xl font-bold bg-gradient-to-r from-[#0dccff] to-[#4760ff] bg-clip-text text-transparent">1.0</span>
+        <div className="text-5xl font-extrabold text-black col-span-12 flex items-center justify-center gap-3">
+          <FaMeta className="text-4xl text-[#1877F2]" />
+          애드트레커{" "}
+          <span className="text-5xl font-bold bg-gradient-to-r from-[#0dccff] to-[#4760ff] bg-clip-text text-transparent">
+            1.0
+          </span>
         </div>
-        <div className="text-2xl font-bold text-[#757575] col-span-12">효율적인 광고 맞춤형 전략 솔루션</div>
+        <div className="text-2xl font-bold text-[#757575] col-span-12">
+          효율적인 광고 맞춤형 전략 솔루션
+        </div>
         {/* <div className="col-span-12 md:col-span-6 flex flex-col justify-center items-center gap-y-2 md:gap-y-12 ">
           <div className="flex flex-col justify-center items-center gap-y-4">
             <h1 className="w-full text-4xl font-bold text-center">
@@ -51,7 +58,7 @@ export default async function ProtectedPage() {
       </div>
       <div className="w-[80vw] md:w-[90vw] md:max-w-[1374px] h-full flex flex-col justify-center items-center mx-auto my-6">
         <SearchBar />
-        <CardSections/>
+        <CardSections />
       </div>
     </>
   );

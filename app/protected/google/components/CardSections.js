@@ -150,7 +150,7 @@ export default function CardSections() {
                   <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                     <div className="flex gap-2 justify-between items-center w-full">
                       <div className="flex gap-2 items-center">
-                        <div className="relative w-12 h-12 ">
+                        {/* <div className="relative w-12 h-12 ">
                           <Image
                             src={item.profile || "/images/noimage.jpg"}
                             alt="thumbnail"
@@ -158,7 +158,7 @@ export default function CardSections() {
                             fill
                             unoptimized
                           ></Image>
-                        </div>
+                        </div> */}
                         <p className="font-bold text-xl">{item.name}</p>
                       </div>
                       <div>
@@ -177,20 +177,22 @@ export default function CardSections() {
                       </div>
                     </div>
                     <p className="text-[18px] text-gray-500 ">
-                      확인일시: {formatTimestampToDate(item.created_at)}
+                      확인일시: {formatTimestampToDate(item.checked_at || item.created_at)}
                     </p>
                     <h1 className="text-[15px] font-bold">ID:{item.adId}</h1>
                   </CardHeader>
                   <CardBody className="overflow-visible flex-1 flex justify-center items-center p-4">
                     <div className="w-full h-full bg-[#e4e4e4] flex justify-center items-center px-6">
                       <div className="relative w-full max-w-[288px] aspect-[288/264]">
-                        <Image
-                          alt="Card background"
-                          className="object-contain"
-                          src={item.thumbnail || "/images/noimage.jpg"}
-                          fill
-                          unoptimized
-                        />
+                        {item.thumbnail && (
+                          <Image
+                            alt="Card background"
+                            className="object-contain"
+                            src={item.thumbnail}
+                            fill
+                            unoptimized
+                          />
+                        )}
                       </div>
                     </div>
                   </CardBody>
