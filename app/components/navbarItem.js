@@ -23,13 +23,13 @@ export default function NavbarItem() {
       </Link>
       <Link href='/protected/google'>
         <div className={`${pathname === '/protected/google' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
-          구글 광고 트래커
+          구글 광고 트레커
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected/tools' ? 'hidden' : ''}`}></span>
         </div>
       </Link>
       <Link href='/protected/meta'>
         <div className={`${pathname === '/protected/meta' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
-          메타 광고 트래커
+          메타 광고 트레커
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected/tools' ? 'hidden' : ''}`}></span>
         </div>
       </Link>
@@ -39,12 +39,12 @@ export default function NavbarItem() {
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected' ? 'hidden' : ''}`}></span>
         </div>
       </Link>
-      <Link href='/protected/insight'>
+      {/* <Link href='/protected/insight'>
         <div className={`${pathname === '/protected/insight' ? 'bg-gradient-to-r from-[#00C5FF] to-[#0176FF]' : ''} px-3 py-1 rounded-md text-white text-[15px] relative group`}>
           내부 인사이트
           <span className={`absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-[#00C5FF] to-[#0176FF] group-hover:w-full transition-all duration-300 ${pathname === '/protected/insight' ? 'hidden' : ''}`}></span>
         </div>
-      </Link>
+      </Link> */}
     </div>
   );
 }
